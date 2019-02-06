@@ -1,0 +1,41 @@
+<div class="jumbotron text-container">
+    <h1>
+      {{ title }}
+    </h1>
+</div>
+
+<main class ="container">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <input 
+        (input)="0"
+        #inputPesquisa
+        type="text" class="form-control" placeholder="pesquise...">
+      </div>
+      <a [routerLink]="['cadastro']" class="btn btn-primary mb-5">Nova Foto</a>
+    </div>
+  </div>
+  <div class="row" *ngIf="mensagem">
+    <app-mensagem tipo="success"> {{ mensagem }} </app-mensagem>
+  </div>
+  <div class="row">  
+    <div class="col-md-3" *ngFor="let foto of listaFotos | filtraPorTitulo:inputPesquisa.value">
+      <app-painel [titulo]="foto.titulo">
+        
+          <app-foto [url]="foto.url" [descricao]="foto.titulo"></app-foto>
+          <hr/>
+          <div class="col-sm-12">
+            
+            <button (click)="remover(foto)" type="button" class="btn btn-danger">
+              <span class="glyphicon glyphicon-remove"></span> Remover
+            </button>
+            <button type="button" class="btn btn-primary" [routerLink]="['/editar', foto._id]">
+                Editar
+            </button>
+        </div>
+      </app-painel>
+    </div>
+</div>
+  
+</main>

@@ -5,6 +5,6 @@ import { Input, Component } from '@angular/core';
     templateUrl: 'painel.component.html'
 })
 
-export class PainelComponent{
+export class PainelComponent {
     @Input() titulo;
 }
